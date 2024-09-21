@@ -112,8 +112,8 @@ class PostInput extends StatelessWidget {
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: TextStyle(
-                color: AppColors.whiteColor,
-                fontSize: 12,
+                color: Colors.black,
+                fontSize: 12.sp,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius ?? 5),

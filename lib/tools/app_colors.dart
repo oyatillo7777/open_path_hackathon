@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primaryColor = const Color(0xff394165);
+  static Color primaryColor = const Color(0xff21A0D6);
   static Color selectedColor = const Color(0xff19BD9B);
   static Color bottombarColor = const Color(0xff2B2937);
   static Color successColor = const Color(0xff1A8D75);

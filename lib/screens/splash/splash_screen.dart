@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         }
         Get.offAll(
           getIt.get<PrefUtils>().getToken().isNotEmpty
-              ? const MainScreen()
+              ? const HomePage()
               : const LoginScreen(),
         );
       });

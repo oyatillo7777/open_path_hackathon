@@ -17,7 +17,7 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  String _selectedValue = "Ko'zi ojizlar";
+  final String _selectedValue = "Ko'zi ojizlar";
   DateTime? selectedDate;
 
   @override
@@ -148,7 +148,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         children: [
                           SizedBox(
                             height: 250,
-                            child: Image.asset('assets/img.png'),
+                            child: Image.asset('assets/doc.png'),
                           ),
                         ],
                       ),
@@ -164,7 +164,9 @@ class _CreateScreenState extends State<CreateScreen> {
                     label: "Continue",
                     labelFontWight: FontWeight.w500,
                   ),
-                  const Hg(height: 20,)
+                  const Hg(
+                    height: 20,
+                  )
                 ],
               ),
             ),
