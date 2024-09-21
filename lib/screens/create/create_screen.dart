@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:date_field/date_field.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,8 +26,10 @@ class CreateScreen extends StatefulWidget {
 class _CreateScreenState extends State<CreateScreen> {
   final String _selectedValue = "Ko'zi ojizlar";
   DateTime? selectedDate;
-  TextEditingController txtName=TextEditingController();
-  TextEditingController txtPassword=TextEditingController();
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtSourName = TextEditingController();
+  TextEditingController txtDate = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,9 +128,20 @@ class _CreateScreenState extends State<CreateScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 250,
-                            child: Image.asset('assets/password.png'),
+                          InkWell(
+                            onTap: () {
+                              getProductImage();
+                            },
+                            child: SizedBox(
+                              height: 250,
+                              child: productImage == null
+                                  ? Image.asset('assets/password.png')
+                                  : Image.file(
+                                      File(
+                                        productImage!.path!,
+                                      ),
+                                    ),
+                            ),
                           ),
                         ],
                       ),
@@ -150,9 +167,20 @@ class _CreateScreenState extends State<CreateScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 250,
-                            child: Image.asset('assets/doc.png'),
+                          InkWell(
+                            onTap: () {
+                              getProductImage();
+                            },
+                            child: SizedBox(
+                              height: 250,
+                              child: productImage == null
+                                  ? Image.asset('assets/doc.png')
+                                  : Image.file(
+                                      File(
+                                        productImage!.path!,
+                                      ),
+                                    ),
+                            ),
                           ),
                         ],
                       ),
@@ -195,5 +223,33 @@ class _CreateScreenState extends State<CreateScreen> {
         ),
       ),
     );
+  }
+
+  PlatformFile? productImage;
+
+  Future<void> getProductImage() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: [
+          'wav',
+          'mpeg',
+          'mp4',
+          'mov',
+          'png',
+          'jpeg',
+        ],
+      );
+
+      if (result != null) {
+        setState(() {
+          productImage = result.files.single;
+        });
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print('Error picking document: $error');
+      }
+    }
   }
 }
