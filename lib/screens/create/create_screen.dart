@@ -1,6 +1,8 @@
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:open_path_hackathon/screens/main/main_screen.dart';
 import 'package:open_path_hackathon/tools/app_colors.dart';
 
 import '../../widget/button.dart';
@@ -157,7 +159,10 @@ class _CreateScreenState extends State<CreateScreen> {
                   const Hg(
                     height: 20,
                   ),
-                  const MobileButton(
+                   MobileButton(
+                    onTap: (){
+                      Get.off(HomePage());
+                    },
                     fontSize: 18,
                     width: double.infinity,
                     color: Color(0xffFD4C00),

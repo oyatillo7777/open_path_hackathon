@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:open_path_hackathon/screens/chat/chat_screen.dart';
+import 'package:open_path_hackathon/screens/homework/homework.dart';
 import 'package:open_path_hackathon/screens/main/list_title.dart';
 import 'package:open_path_hackathon/tools/app_colors.dart';
 import 'package:open_path_hackathon/widget/text_filed.dart';
@@ -25,7 +28,6 @@ class _HomePageState extends State<HomePage> {
     "assets/lesson.jpg",
     "assets/room.png",
     "assets/room.png",
-
   ];
   List txt = [
     "RTM",
@@ -64,10 +66,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
-                    size: 30,
+                  IconButton(
+                    onPressed: (){
+                      Get.to(ChatScreen());
+                    },
+                    icon: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                      size: 30,
+                    ),
                   )
                 ],
               ),
@@ -94,27 +101,32 @@ class _HomePageState extends State<HomePage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Container(
-                        width: double.infinity,
-                        height: 130,
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
+                      InkWell(
+                        onTap: () {
+                          Get.to(const HomeworkScreen());
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryColor,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextWidget(
-                                text: "There is homework",
-                                color: Colors.white,
-                                size: 20.sp,
-                              ),
-                              Image.asset('assets/homework.png')
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextWidget(
+                                  text: "There is homework",
+                                  color: Colors.white,
+                                  size: 20.sp,
+                                ),
+                                Image.asset('assets/homework.png')
+                              ],
+                            ),
                           ),
                         ),
                       ),

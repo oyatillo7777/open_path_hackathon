@@ -20,22 +20,35 @@ class _HomeworkScreenState extends State<HomeworkScreen> {
         ),
       ),
       body: ListView.builder(
+        itemCount: 100,
         itemBuilder: (context, index) {
-          return  Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                const CircleAvatar(
+          return Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.blue,
                 ),
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  color: Colors.grey,
-                )
-              ],
-            ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           );
         },
       ),

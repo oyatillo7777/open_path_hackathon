@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const ScreenUtilInit(
       child: GetMaterialApp(
-        home: HomeworkScreen(),
+        home: SplashScreen(),
       ),
     );
   }
