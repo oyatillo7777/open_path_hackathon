@@ -2,6 +2,7 @@ import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:open_path_hackathon/screens/login/login_screen.dart';
 import 'package:open_path_hackathon/screens/main/main_screen.dart';
 import 'package:open_path_hackathon/tools/app_colors.dart';
 
@@ -21,7 +22,8 @@ class CreateScreen extends StatefulWidget {
 class _CreateScreenState extends State<CreateScreen> {
   final String _selectedValue = "Ko'zi ojizlar";
   DateTime? selectedDate;
-
+  TextEditingController txtName=TextEditingController();
+  TextEditingController txtPassword=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,15 +161,29 @@ class _CreateScreenState extends State<CreateScreen> {
                   const Hg(
                     height: 20,
                   ),
-                   MobileButton(
-                    onTap: (){
-                      Get.off(HomePage());
-                    },
-                    fontSize: 18,
-                    width: double.infinity,
-                    color: Color(0xffFD4C00),
-                    label: "Continue",
-                    labelFontWight: FontWeight.w500,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MobileButton(
+                        onTap: () {
+                          Get.offAll(LoginScreen());
+                        },
+                        fontSize: 18,
+                        color: const Color(0xffFD4C00),
+                        label: "Back",
+                        labelFontWight: FontWeight.w500,
+                      ),
+                      const Wd(),
+                      MobileButton(
+                        onTap: () {
+                          Get.off(const HomePage());
+                        },
+                        fontSize: 18,
+                        color: Colors.green,
+                        label: "Continue",
+                        labelFontWight: FontWeight.w500,
+                      ),
+                    ],
                   ),
                   const Hg(
                     height: 20,

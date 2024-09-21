@@ -43,7 +43,10 @@ dependencies:
   date_field: ^5.2.1
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
-
+  dartz: ^0.10.1
+  freezed_annotation:
+  build_runner:
+  freezed:
 dev_dependencies:
   flutter_test:
     sdk: flutter

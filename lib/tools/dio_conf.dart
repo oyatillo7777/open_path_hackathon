@@ -9,7 +9,7 @@ class DioConfig {
   static Dio getDio() {
     _dio ??= Dio()
       ..options = BaseOptions(
-        baseUrl: AppConstants.token,
+        baseUrl: AppConstants.url,
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 300),
         contentType: Headers.jsonContentType,
@@ -18,7 +18,7 @@ class DioConfig {
         InterceptorsWrapper(
           onRequest: (RequestOptions options, handle) async {
             String token = await getIt<PrefUtils>().getToken();
-            options.headers['Authorization'] = "Bearer $token";
+            options.headers['Authorization'] = "bearer $token";
             return handle.next(options);
           },
           onError: (DioException e, ErrorInterceptorHandler handle) {

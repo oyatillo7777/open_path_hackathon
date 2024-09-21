@@ -6,6 +6,7 @@ import 'package:open_path_hackathon/screens/chat/chat_screen.dart';
 import 'package:open_path_hackathon/screens/homework/homework.dart';
 import 'package:open_path_hackathon/screens/main/list_title.dart';
 import 'package:open_path_hackathon/tools/app_colors.dart';
+import 'package:open_path_hackathon/tools/pref.dart';
 import 'package:open_path_hackathon/widget/text_filed.dart';
 
 import '../../widget/sized_box.dart';
@@ -51,10 +52,15 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Image.asset('assets/logo.png'),
+                  InkWell(
+                    onTap: () {
+                      PrefUtils().clearAll(context);
+                    },
+                    child: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset('assets/logo.png'),
+                    ),
                   ),
                   const Expanded(
                     child: PostInput(
@@ -67,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   IconButton(
-                    onPressed: (){
+                    onPressed: () {
                       Get.to(ChatScreen());
                     },
                     icon: const Icon(
