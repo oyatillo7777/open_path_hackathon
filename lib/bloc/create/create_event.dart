@@ -9,6 +9,6 @@ class CreateEvent with _$CreateEvent {
     String phone_number,
     String username,
     String password,
-    String passport_image,
+    dynamic passport_image,
   ) = _Create;
 }

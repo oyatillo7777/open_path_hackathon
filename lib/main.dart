@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:open_path_hackathon/bloc/create/create_bloc.dart';
 import 'package:open_path_hackathon/bloc/login/login_bloc.dart';
 import 'package:open_path_hackathon/screens/splash/splash_screen.dart';
 import 'package:open_path_hackathon/tools/locator.dart';
@@ -16,6 +17,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CreateBloc(),
         ),
       ],
       child: const MyApp(),

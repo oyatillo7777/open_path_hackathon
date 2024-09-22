@@ -4,8 +4,10 @@ import 'package:date_field/date_field.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:open_path_hackathon/bloc/create/create_bloc.dart';
 import 'package:open_path_hackathon/screens/login/login_screen.dart';
 import 'package:open_path_hackathon/screens/main/main_screen.dart';
 import 'package:open_path_hackathon/tools/app_colors.dart';
@@ -28,7 +30,8 @@ class _CreateScreenState extends State<CreateScreen> {
   DateTime? selectedDate;
   TextEditingController txtName = TextEditingController();
   TextEditingController txtSourName = TextEditingController();
-  TextEditingController txtDate = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,54 +50,35 @@ class _CreateScreenState extends State<CreateScreen> {
                     height: 250,
                     child: Image.asset("assets/logo.png"),
                   ),
-                  const Hg(),
-                  const PostInput(
+                  Hg(),
+                  PostInput(
+                    controller: txtName,
                     label: "Name",
                     inputWidth: double.infinity,
                   ),
                   const Hg(
                     height: 20,
                   ),
-                  const PostInput(
-                    label: "Sourname",
+                  PostInput(
+                    controller: txtSourName,
+                    label: "UserName",
                     inputWidth: double.infinity,
                   ),
                   const Hg(
                     height: 20,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const TextWidget(text: "Date of birth"),
-                      Hg(
-                        height: 8.h,
-                      ),
-                      Container(
-                        height: 45,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColors.borderColor,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: DateTimeFormField(
-                          decoration: const InputDecoration(
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                          ),
-                          firstDate:
-                              DateTime.now().add(const Duration(days: 10)),
-                          lastDate:
-                              DateTime.now().add(const Duration(days: 40)),
-                          initialPickerDateTime:
-                              DateTime.now().add(const Duration(days: 20)),
-                          onChanged: (DateTime? value) {
-                            selectedDate = value;
-                          },
-                        ),
-                      ),
-                    ],
+                  PostInput(
+                    controller: txtPhone,
+                    label: "Phone number",
+                    inputWidth: double.infinity,
+                  ),
+                  const Hg(
+                    height: 20,
+                  ),
+                  PostInput(
+                    controller: txtPassword,
+                    label: "Password",
+                    inputWidth: double.infinity,
                   ),
                   const Hg(
                     height: 20,
@@ -204,7 +188,15 @@ class _CreateScreenState extends State<CreateScreen> {
                       const Wd(),
                       MobileButton(
                         onTap: () {
-                          Get.off(const HomePage());
+                          context.read<CreateBloc>().add(
+                                CreateEvent.create(
+                                  txtName.text,
+                                  txtPhone.text,
+                                  txtSourName.text,
+                                  txtPassword.text,
+                                  productImage,
+                                ),
+                              );
                         },
                         fontSize: 18,
                         color: Colors.green,

@@ -20,7 +20,7 @@ mixin _$CreateEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String fullname, String phone_number,
-            String username, String password, String passport_image)
+            String username, String password, dynamic passport_image)
         create,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$CreateEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$CreateEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
     required TResult orElse(),
   }) =>
@@ -120,7 +120,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String fullname, String phone_number,
-            String username, String password, String passport_image)
+            String username, String password, dynamic passport_image)
         create,
   }) {
     return started();
@@ -131,7 +131,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
   }) {
     return started?.call();
@@ -142,7 +142,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
     required TResult orElse(),
   }) {
@@ -199,7 +199,7 @@ abstract class _$$CreateImplCopyWith<$Res> {
       String phone_number,
       String username,
       String password,
-      String passport_image});
+      dynamic passport_image});
 }
 
 /// @nodoc
@@ -217,7 +217,7 @@ class __$$CreateImplCopyWithImpl<$Res>
     Object? phone_number = null,
     Object? username = null,
     Object? password = null,
-    Object? passport_image = null,
+    Object? passport_image = freezed,
   }) {
     return _then(_$CreateImpl(
       null == fullname
@@ -236,10 +236,10 @@ class __$$CreateImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      null == passport_image
+      freezed == passport_image
           ? _value.passport_image
           : passport_image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ));
   }
 }
@@ -259,7 +259,7 @@ class _$CreateImpl implements _Create {
   @override
   final String password;
   @override
-  final String passport_image;
+  final dynamic passport_image;
 
   @override
   String toString() {
@@ -279,13 +279,13 @@ class _$CreateImpl implements _Create {
                 other.username == username) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.passport_image, passport_image) ||
-                other.passport_image == passport_image));
+            const DeepCollectionEquality()
+                .equals(other.passport_image, passport_image));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, fullname, phone_number, username, password, passport_image);
+  int get hashCode => Object.hash(runtimeType, fullname, phone_number, username,
+      password, const DeepCollectionEquality().hash(passport_image));
 
   @JsonKey(ignore: true)
   @override
@@ -298,7 +298,7 @@ class _$CreateImpl implements _Create {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(String fullname, String phone_number,
-            String username, String password, String passport_image)
+            String username, String password, dynamic passport_image)
         create,
   }) {
     return create(fullname, phone_number, username, password, passport_image);
@@ -309,7 +309,7 @@ class _$CreateImpl implements _Create {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
   }) {
     return create?.call(
@@ -321,7 +321,7 @@ class _$CreateImpl implements _Create {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(String fullname, String phone_number, String username,
-            String password, String passport_image)?
+            String password, dynamic passport_image)?
         create,
     required TResult orElse(),
   }) {
@@ -369,13 +369,13 @@ abstract class _Create implements CreateEvent {
       final String phone_number,
       final String username,
       final String password,
-      final String passport_image) = _$CreateImpl;
+      final dynamic passport_image) = _$CreateImpl;
 
   String get fullname;
   String get phone_number;
   String get username;
   String get password;
-  String get passport_image;
+  dynamic get passport_image;
   @JsonKey(ignore: true)
   _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
       throw _privateConstructorUsedError;
